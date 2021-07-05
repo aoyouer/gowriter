@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"gowriter/file"
 	"gowriter/model"
 	"gowriter/server"
@@ -18,6 +19,9 @@ func init() {
 
 func main() {
 	flag.Parse()
-	file.CheckHugoDir(config.SitePath)
-	server.Start()
+	if err := file.CheckHugoDir(config.SitePath); err != nil {
+		fmt.Println("启动参数检查失败", err.Error())
+	} else {
+		server.Start()
+	}
 }

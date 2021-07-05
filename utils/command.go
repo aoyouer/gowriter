@@ -1,16 +1,20 @@
-package utils 
+package utils
+
 import (
-	"exec"
 	"bytes"
+	"log"
+	"os/exec"
 )
 
-func ExecCommand(cmd string) (stdout string,stderr string, err error) {
-	cmd := exec.Command("ls", "-lah")
-	var stdoutBuffer, strerrBuffer bytes.Buffer
-	cmd.
-	output, err = cmd.CombinedOutput()
+func ExecCommand(cmdstr string) (stdout string, stderr string, err error) {
+	cmd := exec.Command(cmdstr)
+	var stdoutBuffer, stderrBuffer bytes.Buffer
+	cmd.Stdout = &stdoutBuffer
+	cmd.Stderr = &stderrBuffer
+	err = cmd.Run()
 	if err != nil {
-		log.Println("error when exec command %s\n", err)
+		log.Printf("error when exec command %s\n", err.Error())
 	}
-	return 
+	stdout, stderr = string(stdoutBuffer.Bytes()), string(stderrBuffer.Bytes())
+	return
 }
