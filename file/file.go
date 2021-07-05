@@ -12,7 +12,7 @@ func CheckHugoDir(dirPath string) (err error) {
 	isDir := IsDir(dirPath)
 	if isDir {
 		// 判断系统是否安装了hugo以及这个文件夹是否是hugo的文件夹
-		stdout, stderr, err := utils.ExecCommand("hugo env")
+		stdout, stderr, err := utils.ExecCommandInPath("hugo", dirPath)
 		if err != nil {
 			log.Println("命令执行失败", stderr)
 			err = errors.New("exec command failed:" + stderr)
