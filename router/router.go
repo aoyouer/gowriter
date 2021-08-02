@@ -1,20 +1,21 @@
 package router
 
 import (
-	"gowriter/model"
+	"gowriter/handler"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-func InitRouter(config model.Config) *gin.Engine {
+func InitRouter() *gin.Engine {
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*")
 	// 添加 Get 请求路由
 	router.GET("/", func(context *gin.Context) {
 		context.String(http.StatusOK, "hello gin")
 	})
-	router.StaticFS("/fs", http.Dir(config.SitePath))
+	//router.GET("/file",handler.GetFileList())
+	router.GET("/fs/*path", handler.GetFileList)
 
 	return router
 }

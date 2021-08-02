@@ -8,6 +8,7 @@ import (
 )
 
 // 检查启动时参数指定的确实是hugo的站点文件夹
+
 func CheckHugoDir(dirPath string) (err error) {
 	isDir := IsDir(dirPath)
 	if isDir {
@@ -43,10 +44,17 @@ func CheckHugoDir(dirPath string) (err error) {
 }
 
 // 判断所给路径是否为文件夹
+
 func IsDir(path string) bool {
 	s, err := os.Stat(path)
 	if err != nil {
 		return false
 	}
 	return s.IsDir()
+}
+
+// 获取指定目录下的所有文件, 用于展示 请求url /fs/ 相对于启动时设置的站点根目录
+
+func ListAllFiles(path string) {
+
 }
