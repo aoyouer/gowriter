@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e6a87f70-cc14-4b4a-8b47-c776f775eee6" name="contabo">
+        <fileTransfer rootFolder="/root/dev/godev" accessType="SFTP" host="con.ifine.eu" port="22" sshConfigId="54e28660-a51b-4422-b145-6b39c3af7171" sshConfig="root@con.ifine.eu:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="02e73e1a-2541-42fb-8ef8-a9db10966b64" name="tencent hk">
+        <fileTransfer rootFolder="/root/dev/godev" accessType="SFTP" host="thk.ifine.eu" port="22" sshConfigId="5dc3b14a-255e-4a16-bb10-3b609e463637" sshConfig="root@thk.ifine.eu:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
