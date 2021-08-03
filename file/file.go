@@ -52,3 +52,9 @@ func IsDir(path string) bool {
 	}
 	return s.IsDir()
 }
+
+// 获取指定目录下的所有文件, 用于展示 请求url /fs/ 相对于启动时设置的站点根目录
+
+func ListAllFiles(path string) {
+
+}
