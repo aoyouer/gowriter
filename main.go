@@ -22,6 +22,6 @@ func main() {
 	if err := file.CheckHugoDir(config.SitePath); err != nil {
 		fmt.Println("启动参数检查失败", err.Error())
 	} else {
-		server.Start()
+		server.Start(config)
 	}
 }
