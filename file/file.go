@@ -3,9 +3,18 @@ package file
 import (
 	"errors"
 	"gowriter/utils"
+	"io/ioutil"
 	"log"
 	"os"
+	"time"
 )
+
+type DescFile struct {
+	FileName    string
+	FileSize    int64
+	FileModTime time.Time
+	FileIsDir   bool
+}
 
 // 检查启动时参数指定的确实是hugo的站点文件夹
 
@@ -53,8 +62,33 @@ func IsDir(path string) bool {
 	return s.IsDir()
 }
 
-// 获取指定目录下的所有文件, 用于展示 请求url /fs/ 相对于启动时设置的站点根目录
+// 判断路径是否有效
 
-func ListAllFiles(path string) {
-
+func IsValidUrl(path string) bool {
+	if _, err := os.Stat(path); err != nil {
+		return false
+	} else {
+		return true
+	}
 }
+
+// 获取指定目录下的所有文件, 用于展示 请求url /fs/ 相对于启动时设置的站点根目录 考虑返回信息结构体包含类型、大小、创建时间
+
+func ListAllFiles(path string) (descFiles []DescFile) {
+	if fileDescs, err := ioutil.ReadDir(path); err != nil {
+		log.Println("读取目录列表出错")
+		return
+	} else {
+		for i := range fileDescs {
+			descFiles = append(descFiles, DescFile{
+				FileName:    fileDescs[i].Name(),
+				FileIsDir:   fileDescs[i].IsDir(),
+				FileModTime: fileDescs[i].ModTime(),
+				FileSize:    fileDescs[i].Size(),
+			})
+		}
+	}
+	return
+}
+
+// 获取文件

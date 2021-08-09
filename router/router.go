@@ -16,7 +16,6 @@ func InitRouter() *gin.Engine {
 	})
 
 	//router.GET("/file",handler.GetFileList())
-	router.GET("/fs/*path", handler.GetFileList)
-
+	router.GET("/fs/*path", handler.GetFileHandler)
 	return router
 }

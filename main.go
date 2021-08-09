@@ -12,6 +12,6 @@ func main() {
 	if err != nil {
 		log.Println(err.Error())
 	} else {
-		server.Start(config)
+		server.Start()
 	}
 }
