@@ -1,0 +1,28 @@
+{{ define "home/index.tmpl"}}
+<!doctype html>
+<html lang="zh-cmn-Hans" class="h-100">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- MDUI CSS -->
+    <link href="/assets/css/mdui.css" rel="stylesheet" crossorigin="anonymous">
+    <title>Go writer</title>
+</head>
+<body>
+{{ template "globals/header.tmpl" .}}
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            {{ template "globals/sidebar.tmpl" }}
+        </div>
+    </div>
+</div>
+{{ template "globals/footer.tmpl" .}}
+<!-- script -->
+<script src="/assets/js/mdui.js" crossorigin="anonymous"></script>
+</body>
+{{ end }}
