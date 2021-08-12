@@ -1,14 +1,11 @@
 {{ define "globals/header.tmpl" }}
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowarp p-0 shadow">
-    <button class="navbar-toggler d-md-none collapsed mx-3" type="button" data-bs-toggle="collapse"
-            data-bs-target="#sidebarMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand col-md-3 col-lg-2 px-3 py-lg-4" href="#">Go writer</a>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap me-3">
-            <a class="nav-link" href="#">Sign out</a>
-        </li>
-    </ul>
-</header>
+<div class="mdui-appbar mdui-appbar-fixed">
+    <div class="mdui-toolbar mdui-color-theme">
+        <button mdui-drawer="{target: '#main-drawer'}" class="mdui-btn mdui-btn-icon" ><i class="mdui-icon material-icons">menu</i></button>
+        <a class="mdui-typo-headline">Gowriter</a>
+        <div class="mdui-toolbar-spacer"></div>
+        <a class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">settings</i></a>
+        <a class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
+    </div>
+</div>
 {{ end }}
