@@ -19,11 +19,61 @@
 <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-indigo">
 {{ template "globals/header.tmpl" .}}
 {{ template "globals/drawer.tmpl" .}}
-<div class="mdui-container mdui-card main-content mdui-m-a-2 mdui-center">
-    <!--  文章列表  -->
-    <div class="article-selector"></div>
-    <div class="mdui-list">
-        <!--列表项通过ajax获取 或者服务端渲染?-->
+<div class="mdui-container mdui-card main-content mdui-m-a-2 mdui-center mdui-p-x-0">
+    <div class="posts-panel">
+        <!--  文章列表  -->
+        <div class="article-selector mdui-tab-scrollable">
+            <select class="mdui-select" mdui-select>
+                <option value="1">类型</option>
+                <option value="2">文章</option>
+                <option value="3" disabled>State 3</option>
+                <option value="4">State 4</option>
+                <option value="5">State 5</option>
+                <option value="6">State 6</option>
+            </select>
+            <select class="mdui-select" mdui-select>
+                <option value="1">分类</option>
+                <option value="2">所有分类</option>
+                <option value="3" disabled>State 3</option>
+                <option value="4">State 4</option>
+                <option value="5">State 5</option>
+                <option value="6">State 6</option>
+            </select>
+            <select class="mdui-select" mdui-select>
+                <option value="1">状态</option>
+                <option value="2">所有状态</option>
+                <option value="3" disabled>State 3</option>
+                <option value="4">State 4</option>
+                <option value="5">State 5</option>
+                <option value="6">State 6</option>
+            </select>
+        </div>
+        <div class="mdui-divider"></div>
+        <ul class="mdui-list posts-list">
+            <!--列表项通过ajax获取 或者服务端渲染?-->
+            <li class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-content">Inbox</div>
+                <i class="mdui-list-item-icon mdui-icon material-icons">move_to_inbox</i>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-content">Outbox</div>
+                <i class="mdui-list-item-icon mdui-icon material-icons">send</i>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-content">Trash</div>
+                <i class="mdui-list-item-icon mdui-icon material-icons">delete</i>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-content">Spam</div>
+                <i class="mdui-list-item-icon mdui-icon material-icons">error</i>
+            </li>
+        </ul>
+        <div class="mdui-divider"></div>
+        <!--分页按钮组-->
+        <div class="mdui-btn-group mdui-center mdui-text-center page-btn-group">
+            <button type="button" class="mdui-btn"><i class="mdui-icon material-icons">keyboard_arrow_left</i></button>
+            <button type="button" class="mdui-btn"><i class="mdui-icon material-icons">keyboard_arrow_right</i></button>
+        </div>
     </div>
 </div>
 {{ template "globals/footer.tmpl" .}}
