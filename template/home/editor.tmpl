@@ -17,8 +17,23 @@
 <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-indigo">
 {{ template "globals/header.tmpl" .}}
 {{ template "globals/drawer.tmpl" .}}
-<div class="mdui-card mdui-m-a-2 mdui-p-a-2">
-    <div id="vditor" class="mdui-m-t-2"></div>
+<div class="mdui-container mdui-center mdui-m-a-2 mdui-p-a-0 mdui-shadow-3">
+    <div id="vditor" class="mdui-m-t-0"></div>
+</div>
+
+<div class="mdui-fab-wrapper" mdui-fab="{trigger: 'hover'}">
+    <button class="mdui-fab mdui-ripple mdui-color-theme-accent">
+        <i class="mdui-icon material-icons">save</i>
+
+        <!-- 在拨号菜单开始打开时，平滑切换到该图标，若不需要切换图标，则可以省略该元素 -->
+        <i class="mdui-icon mdui-fab-opened material-icons">save</i>
+    </button>
+    <div class="mdui-fab-dial">
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red"><i class="mdui-icon material-icons">delete</i>
+        </button>
+        <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-green"><i
+                class="mdui-icon material-icons">check</i></button>
+    </div>
 </div>
 {{ template "globals/footer.tmpl" .}}
 <!-- script -->
