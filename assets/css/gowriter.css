@@ -1,0 +1,29 @@
+html {
+    height: 100%;
+}
+body {
+    min-height: 100vh;
+    /*min-height: 100vh;*/
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1 0 auto;
+}
+
+.writer-footer {
+    margin-top: auto;
+}
+
+/*body>footer:only-child{*/
+/*    margin-top: 100%;*/
+/*    transform: translateY(-100%);*/
+/*}*/
+
+/*.main-content {*/
+/*    height: 100%;*/
+/*    padding-top: 64px;*/
+/*}*/
+
+

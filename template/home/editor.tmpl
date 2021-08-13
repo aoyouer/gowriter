@@ -12,12 +12,13 @@
     <link href="/assets/css/mdui.css" rel="stylesheet" crossorigin="anonymous"/>
     <link href="/assets/css/editor.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css"/>
+    <link rel="stylesheet" href="/assets/css/gowriter.css"/>
     <title>Gowriter</title>
 </head>
 <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-indigo">
 {{ template "globals/header.tmpl" .}}
 {{ template "globals/drawer.tmpl" .}}
-<div class="mdui-container mdui-center mdui-m-a-2 mdui-p-a-0 mdui-shadow-3">
+<div class="mdui-container mdui-center mdui-m-a-2 mdui-p-a-0 mdui-shadow-3 main-content mdui-center">
     <div id="vditor" class="mdui-m-t-0"></div>
 </div>
 

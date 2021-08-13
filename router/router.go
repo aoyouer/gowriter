@@ -20,6 +20,9 @@ func InitRouter() *gin.Engine {
 	router.GET("/editor", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "home/editor.tmpl",gin.H{})
 	})
+	router.GET("/posts", func(context *gin.Context) {
+		context.HTML(http.StatusOK,"home/posts.tmpl",gin.H{})
+	})
 	//router.GET("/file",handler.GetFileList())
 	router.GET("/fs/*path", handler.GetFileHandler)
 	// 打开编辑器的前端页面，通过api获取文章内容(文章路径通过参数给出 )

@@ -1,4 +1,4 @@
-{{ define "home/index.tmpl"}}
+{{ define "home/posts.tmpl"}}
 <!doctype html>
 <html lang="zh-cmn-Hans" class="h-100">
 <head>
@@ -14,32 +14,18 @@
     <link rel="stylesheet" href="/assets/css/gowriter.css"/>
     <title>Gowriter</title>
     <style>
-        /*.status-board {*/
-        /*    !*display: flex;*!*/
-        /*    !*justify-content: space-between;*!*/
-        /*    margin-bottom: 1rem;*/
-        /*}*/
     </style>
 </head>
 <body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-indigo">
 {{ template "globals/header.tmpl" .}}
 {{ template "globals/drawer.tmpl" .}}
-<div class="mdui-container main-content mdui-m-a-2 mdui-center">
-    <div class="mdui-row status-board mdui-m-t-2 mdui-p-a-0">
-        <div class="mdui-col-md-5 mdui-shadow-3 mdui-m-b-3" style="min-height: 180px;">统计数据(文章数量等等)</div>
-        <div class="mdui-col-md-6 mdui-col-offset-md-1 mdui-shadow-3 mdui-m-b-2" style="min-height: 180px;">统计数据</div>
-    </div>
-    <div class="mdui-row mdui-m-b-2">
-        <div class="mdui-card article-board mdui-p-a-0" style="min-height: 240px">
-            <div class="mdui-tab mdui-tab-full-width mdui-tab-centered" mdui-tab>
-                <a href="#example1-tab1" class="mdui-ripple">系统信息</a>
-                <a href="#example1-tab2" class="mdui-ripple">更新日志</a>
-                <a href="#example1-tab3" class="mdui-ripple">账户</a>
-            </div>
-        </div>
+<div class="mdui-container mdui-card main-content mdui-m-a-2 mdui-center">
+    <!--  文章列表  -->
+    <div class="article-selector"></div>
+    <div class="mdui-list">
+        <!--列表项通过ajax获取 或者服务端渲染?-->
     </div>
 </div>
-{{ template "globals/fab.tmpl" .}}
 {{ template "globals/footer.tmpl" .}}
 <!-- script -->
 <script src="/assets/js/mdui.js" crossorigin="anonymous"></script>
