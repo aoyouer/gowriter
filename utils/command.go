@@ -14,8 +14,8 @@ func ExecCommand(cmdstr string) (stdout string, stderr string, err error) {
 	stdout, stderr, err = ExecCommandInPath(cmdstr, dir)
 	return
 }
-func ExecCommandInPath(cmdstr string, cmdPath string) (stdout string, stderr string, err error) {
-	cmd := exec.Command(cmdstr)
+func ExecCommandInPath(cmdstr string, cmdPath string, args ...string) (stdout string, stderr string, err error) {
+	cmd := exec.Command(cmdstr, args...)
 	cmd.Dir = cmdPath
 	var stdoutBuffer, stderrBuffer bytes.Buffer
 	cmd.Stdout = &stdoutBuffer

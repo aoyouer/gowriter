@@ -5,6 +5,7 @@ import (
 	"gowriter/utils"
 	"io/ioutil"
 	"log"
+	"math"
 	"os"
 	"time"
 )
@@ -22,7 +23,7 @@ func CheckHugoDir(dirPath string) (err error) {
 	isDir := IsDir(dirPath)
 	if isDir {
 		// 判断系统是否安装了hugo以及这个文件夹是否是hugo的文件夹
-		stdout, stderr, err := utils.ExecCommandInPath("hugo list all", dirPath)
+		_, stderr, err := utils.ExecCommandInPath("hugo", dirPath, "list", "all")
 		if err != nil {
 			log.Println("命令执行失败", stderr)
 			err = errors.New("exec command failed:" + stderr)
@@ -31,7 +32,8 @@ func CheckHugoDir(dirPath string) (err error) {
 			err = errors.New("hugo not exist" + stderr)
 		} else {
 			// 检查设置的目录是否在hugo站点文件夹下
-			log.Println(stdout)
+			//log.Println(stdout)
+			log.Println("指定目录有效")
 		}
 	} else {
 		// 启动参数错误，非目录
@@ -92,3 +94,24 @@ func ListAllFiles(path string) (descFiles []DescFile) {
 }
 
 // 获取文件
+
+// 文件列表分页
+
+// 如果要求的页数大于实际拥有的页数，返回错误
+
+func FileListPagination(fileList []DescFile, page int, size int) (needList []DescFile, pageNum int, err error) {
+	if size >= len(fileList) {
+		needList = fileList
+		pageNum = 1
+	} else {
+		pageNum = int(math.Ceil(float64(len(fileList)) / float64(size)))
+		sliceStart := (page - 1) * size
+		sliceEnd := sliceStart + size
+		if sliceEnd >= len(fileList) {
+			err = errors.New("页码越界")
+		} else {
+			needList = fileList[sliceStart:sliceEnd]
+		}
+	}
+	return
+}

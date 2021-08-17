@@ -27,9 +27,9 @@ func InitRouter() *gin.Engine {
 	router.GET("/fs/*path", handler.GetFileHandler)
 	// 打开编辑器的前端页面，通过api获取文章内容(文章路径通过参数给出 )
 	// 前端相关的路由
-	//editorRouter := router.Group("/editor")
+	apiRouter := router.Group("/api")
 	{
-		//editorRouter.GET()
+		apiRouter.GET("/filelist", handler.GetListHandler)
 	}
 	return router
 }

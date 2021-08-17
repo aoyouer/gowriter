@@ -1,11 +1,15 @@
 package handler
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"gowriter/blog"
 	"gowriter/config"
 	"gowriter/file"
 	"log"
+	"net/http"
 	"path/filepath"
+	"strconv"
 )
 
 // 获取指定目录下的文件列表，如果指定的是一个文件则返回文件内容
@@ -32,5 +36,30 @@ func GetFileHandler(context *gin.Context) {
 	} else {
 		// 无效路径 404
 		log.Printf("访问路径%s不存在", destPath)
+	}
+}
+
+// 获取文件列表的处理,分为获取页面文件、文章文件 分别在不同的目录中进行搜索
+
+func GetListHandler(context *gin.Context) {
+	var listType, category string
+	var page, pageSize int
+	listType = context.DefaultQuery("type", "")
+	category = context.DefaultQuery("category", "")
+	page, _ = strconv.Atoi(context.DefaultQuery("page", "0"))
+	pageSize, _ = strconv.Atoi(context.DefaultQuery("size", "10"))
+	// 在指定文件夹进行查找并进行分页
+	var fileList []file.DescFile
+	switch config.GetConfig().SiteType {
+	case "hugo":
+		fmt.Printf("TYPE:%s Category:%s Page:%d Size:%d\n", listType, category, page, pageSize)
+		fileList = blog.GetHugoFile(listType, category)
+	default:
+		fileList = []file.DescFile{}
+	}
+	if list, pageNum, err := file.FileListPagination(fileList, page, pageSize); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"msg": err.Error()})
+	} else {
+		context.JSON(http.StatusOK, gin.H{"page": strconv.Itoa(page) + "/" + strconv.Itoa(pageNum), "files": list})
 	}
 }

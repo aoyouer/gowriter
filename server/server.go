@@ -1,10 +1,11 @@
 package server
 
 import (
+	"gowriter/config"
 	"gowriter/router"
 )
 
 func Start() {
 	r := router.InitRouter()
-	r.Run("0.0.0.0:8080")
+	r.Run(config.GetConfig().BindAddr)
 }
