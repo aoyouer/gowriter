@@ -60,6 +60,6 @@ func GetListHandler(context *gin.Context) {
 	if list, pageNum, err := file.FileListPagination(fileList, page, pageSize); err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"msg": err.Error()})
 	} else {
-		context.JSON(http.StatusOK, gin.H{"page": strconv.Itoa(page) + "/" + strconv.Itoa(pageNum), "files": list})
+		context.JSON(http.StatusOK, gin.H{"currentpage": page, "totalpage": pageNum, "pagesize": pageSize, "files": list})
 	}
 }

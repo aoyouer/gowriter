@@ -20,7 +20,7 @@ func InitRouter() *gin.Engine {
 	router.GET("/editor", func(context *gin.Context) {
 		context.HTML(http.StatusOK, "home/editor.tmpl",gin.H{})
 	})
-	router.GET("/posts", func(context *gin.Context) {
+	router.GET("/filelist", func(context *gin.Context) {
 		context.HTML(http.StatusOK,"home/posts.tmpl",gin.H{})
 	})
 	//router.GET("/file",handler.GetFileList())
