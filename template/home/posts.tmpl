@@ -50,13 +50,11 @@
             </select>
         </div>
         <div class="mdui-divider"></div>
-        <ul class="mdui-list posts-list" id="filelist">
-            <!--列表项通过ajax获取 或者服务端渲染?-->
-            <li class="mdui-list-item mdui-ripple">
-                <div class="mdui-list-item-content">Inbox</div>
-                <i class="mdui-list-item-icon mdui-icon material-icons">move_to_inbox</i>
-            </li>
-        </ul>
+
+        <!--文章列表-->
+        <div class="mdui-panel posts-list" mdui-panel="{accordion: true}" id="filelist">
+        </div>
+
         <div class="mdui-divider"></div>
         <!--分页按钮组-->
         <div class="mdui-btn-group mdui-center mdui-text-center page-btn-group">
