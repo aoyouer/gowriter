@@ -1,7 +1,6 @@
 package blog
 
 import (
-	"gowriter/config"
 	"gowriter/file"
 	"path/filepath"
 )
@@ -14,14 +13,18 @@ var (
 )
 
 // TODO 根据传入的分类对文章、分类进行过滤 (需要读取文章中的标签)
+// TODO 还需要返回文件相对于站点根目录的路径
 
 func GetHugoFile(ftype string, category string) (descFiles []file.DescFile) {
 	for _, d := range directories {
 		if d == ftype {
-			contentPath := filepath.Join(config.GetConfig().SitePath, "content", d)
+			contentPath := filepath.Join("content", d)
 			descFiles = file.ListAllFiles(contentPath)
 			return
 		}
 	}
 	return
 }
+
+// TODO 获取文章列表，需要有标签字段、分类字段、链接、摘要
+

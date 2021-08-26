@@ -32,7 +32,6 @@ func GetFileHandler(context *gin.Context) {
 			context.Header("Content-Type", "application/octet-stream")
 			context.File(destPath)
 		}
-
 	} else {
 		// 无效路径 404
 		log.Printf("访问路径%s不存在", destPath)

@@ -7,7 +7,7 @@ function getFileList(type, catetgory, page, size) {
                 let fileList = ""
                 data.files.forEach((file) => {
                     console.log(file)
-                    fileList += `<div class="mdui-panel-item">
+                    fileList += `<div class="mdui-panel-item file-item">
                                     <div class="mdui-panel-item-header">
                                         <div class="mdui-panel-item-title">${file.FileName}</div>
                                         <div class="mdui-panel-item-summary">${file.FileModTime}</div>

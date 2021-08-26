@@ -2,7 +2,6 @@ package config
 
 import (
 	"flag"
-	"gowriter/file"
 )
 
 // 一个配置的单例
@@ -23,10 +22,6 @@ func init() {
 	flag.Parse()
 }
 
-func CheckConfig() (err error) {
-	err = file.CheckHugoDir(config.SitePath)
-	return
-}
 
 func GetConfig() *Config {
 	return config
