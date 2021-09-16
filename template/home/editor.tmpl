@@ -19,13 +19,12 @@
 {{ template "globals/header.tmpl" .}}
 {{ template "globals/drawer.tmpl" .}}
 <div class="mdui-container mdui-center mdui-m-a-2 mdui-p-a-0 mdui-shadow-3 main-content mdui-center">
-    <div id="vditor" class="mdui-m-t-0"></div>
+    <div id="vditor1" class="mdui-m-t-0"></div>
 </div>
 
 <div class="mdui-fab-wrapper" mdui-fab="{trigger: 'hover'}">
     <button class="mdui-fab mdui-ripple mdui-color-theme-accent">
         <i class="mdui-icon material-icons">save</i>
-
         <!-- 在拨号菜单开始打开时，平滑切换到该图标，若不需要切换图标，则可以省略该元素 -->
         <i class="mdui-icon mdui-fab-opened material-icons">save</i>
     </button>
@@ -42,7 +41,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js"></script>
 <script>
     window.onload = function () {
-        let vditor = new Vditor('vditor', {
+        let vditor = new Vditor('vditor1', {
             mode: 'wysiwyg',
             height: window.innerHeight,
             outline: {
@@ -51,7 +50,9 @@
             },
             debugger: true,
             typewriterMode: true,
-            placeholder: 'Hello, Vditor!',
+            // 从模板读入
+            value: {{ .MDContent }},
+            // placeholder: 'Hello, Vditor!',
             preview: {
                 markdown: {
                     toc: true,
@@ -119,7 +120,6 @@
                 },
             },
         })
-        // document.getElementById('vditor').append(vditor)
     }
 </script>
 </body>

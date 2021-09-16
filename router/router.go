@@ -1,6 +1,7 @@
 package router
 
 import (
+	"gowriter/blog"
 	"gowriter/handler"
 	"net/http"
 
@@ -9,19 +10,21 @@ import (
 
 func InitRouter() *gin.Engine {
 	router := gin.Default()
-	router.Static("/assets","./assets")
+	router.Static("/assets", "./assets")
 	router.LoadHTMLGlob("template/**/*")
 	// TODO index之后做成主页 未登录重定向至登录页
 	router.GET("/", func(context *gin.Context) {
-		context.HTML(http.StatusOK, "home/index.tmpl",gin.H{
+		context.HTML(http.StatusOK, "home/index.tmpl", gin.H{
 			"title": "Hello Gin",
 		})
 	})
 	router.GET("/editor", func(context *gin.Context) {
-		context.HTML(http.StatusOK, "home/editor.tmpl",gin.H{})
+		path := context.Query("path")
+		content, _ := blog.GetHugoContent(path)
+		context.HTML(http.StatusOK, "home/editor.tmpl", gin.H{"MDContent": content})
 	})
 	router.GET("/filelist", func(context *gin.Context) {
-		context.HTML(http.StatusOK,"home/posts.tmpl",gin.H{})
+		context.HTML(http.StatusOK, "home/posts.tmpl", gin.H{})
 	})
 	//router.GET("/file",handler.GetFileList())
 	router.GET("/fs/*path", handler.GetFileHandler)
@@ -30,6 +33,8 @@ func InitRouter() *gin.Engine {
 	apiRouter := router.Group("/api")
 	{
 		apiRouter.GET("/filelist", handler.GetListHandler)
+		// 读取文章内容
+		apiRouter.GET("/content", handler.GetContentHandler)
 	}
 	return router
 }

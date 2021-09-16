@@ -9,6 +9,7 @@ import (
 	"math"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 )
 
@@ -54,7 +55,7 @@ func ListAllFiles(rPath string) (descFiles []DescFile) {
 				FileIsDir:   fileDescs[i].IsDir(),
 				FileModTime: fileDescs[i].ModTime(),
 				FileSize:    fileDescs[i].Size(),
-				FilePath:    filepath.Join(rPath, fileDescs[i].Name()),
+				FilePath:    strings.ReplaceAll(filepath.Join(rPath, fileDescs[i].Name()),"\\","/"),
 			})
 		}
 	}
@@ -117,5 +118,19 @@ func CheckSiteDir() (err error) {
 		log.Println("参数非目录或目录不存在")
 		err = errors.New(sitePath + " not a directory")
 	}
+	return
+}
+
+// 读取文件内容
+
+func GetContent(baseDir string, path string) (content string, err error) {
+	log.Println("尝试读取", filepath.Join(baseDir,path))
+	file, err := os.Open(filepath.Join(baseDir,path))
+	if err != nil {
+		return
+	}
+	defer file.Close()
+	byteContent, err := ioutil.ReadAll(file)
+	content = string(byteContent)
 	return
 }

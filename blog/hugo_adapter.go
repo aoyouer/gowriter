@@ -1,6 +1,7 @@
 package blog
 
 import (
+	"gowriter/config"
 	"gowriter/file"
 	"path/filepath"
 )
@@ -28,3 +29,9 @@ func GetHugoFile(ftype string, category string) (descFiles []file.DescFile) {
 
 // TODO 获取文章列表，需要有标签字段、分类字段、链接、摘要
 
+// TODO 获取文章内容
+
+func GetHugoContent(path string) (content string, err error) {
+	content, err = file.GetContent(config.GetConfig().SitePath,path)
+	return
+}

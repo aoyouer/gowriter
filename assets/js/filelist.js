@@ -7,6 +7,7 @@ function getFileList(type, catetgory, page, size) {
                 let fileList = ""
                 data.files.forEach((file) => {
                     console.log(file)
+                    console.log(file.FilePath)
                     fileList += `<div class="mdui-panel-item file-item">
                                     <div class="mdui-panel-item-header">
                                         <div class="mdui-panel-item-title">${file.FileName}</div>
@@ -17,7 +18,7 @@ function getFileList(type, catetgory, page, size) {
                                     <p>content</p>
                                     <div class="mdui-panel-item-actions">
                                         <button class="mdui-btn mdui-ripple" mdui-panel-item-close>取消</button>
-                                        <button class="mdui-btn mdui-ripple">编辑</button>
+                                        <button class="mdui-btn mdui-ripple" onclick='window.location.href="/editor?path=${file.FilePath}"'>编辑</button>
                                     </div>
                                     </div>
                                  </div>`

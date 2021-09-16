@@ -62,3 +62,21 @@ func GetListHandler(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{"currentpage": page, "totalpage": pageNum, "pagesize": pageSize, "files": list})
 	}
 }
+
+// 读取文件内容的处理
+
+func GetContentHandler(context *gin.Context) {
+	path := context.Query("path")
+	var content string
+	var err error
+	switch config.GetConfig().SiteType {
+	case "hugo":
+		content, err = blog.GetHugoContent(path)
+	default:
+	}
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"msg": err.Error()})
+	} else {
+		context.JSON(http.StatusOK, gin.H{"content": content})
+	}
+}
